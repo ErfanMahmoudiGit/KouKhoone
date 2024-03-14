@@ -10,5 +10,8 @@ def home (request):
     return render (request, "blog/home.html", context)
 def greetings (request):
     return render (request, "blog/greetings.html")
-def detail(request):
-    pass
+def detail(request, slug):
+    context = {
+        "article" : Article.objects.get (slug=slug)
+    }
+    return render (request, "blog/detail.html", context)
