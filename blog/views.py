@@ -12,4 +12,4 @@ def detail(request, slug):
     context = {
         "article" : Article.objects.get (slug=slug)
     }
-    return render (request, "blog/single.html", context)
+    return render (request, "blog/detail.html", context)
