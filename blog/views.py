@@ -1,7 +1,8 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from .models import Article
 #if you want to send HttpResponse or JsonResponse you should use the following commented code.
 #from django.http import HttpResponse , JsonResponse
+from django.http import Http404
 
 def home (request):
     context = {
@@ -11,6 +12,7 @@ def home (request):
 
 def detail(request, slug):
     context = {
-        "article" : Article.objects.get (slug=slug)
+        #Article.objects.get (slug=slug)
+        "article" : get_object_or_404 (Article, slug=slug)
     }
     return render (request, "blog/detail.html", context)
