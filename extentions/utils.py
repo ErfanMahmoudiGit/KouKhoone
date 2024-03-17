@@ -1,5 +1,23 @@
 from . import jalali
 from django.utils import timezone
+def persian_numbers_convertor(mystr):
+    numbers = {
+    "0" : "۰",
+    "1" : "۱",
+    "2" : "۲",
+    "3" : "۳",
+    "4" : "۴",
+    "5" : "۵",
+    "6" : "۶",
+    "7" : "۷",
+    "8" : "۸",
+    "9" : "۹",
+    }
+    #items is used to access key value
+    for e,p in numbers.items():
+        mystr = mystr.replace(e, p)
+    return mystr
+
 def jalali_convertor(time):
     time = timezone.localtime(time)
     jmonths = ["فروردین","اردیبهشت","خرداد","تیر","مرداد","شهریور","مهر","آبان","آذر","دی","بهمن","اسفند"]
@@ -20,4 +38,4 @@ def jalali_convertor(time):
     time.minute,
     )
 
-    return output
+    return persian_numbers_convertor(output)
