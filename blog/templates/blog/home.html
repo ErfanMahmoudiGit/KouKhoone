@@ -27,9 +27,14 @@
                     <h3 class="post-subtitle">{{article.description|truncatewords:30}}</h3>
                 </a>
                 <p class="post-meta">
-                    Posted by
-                    <a href="#!">Erfan</a>
+                    نوشته شده توسط
+                    <a href="#!">عرفان</a>
                     {{article.jpublish}}
+                    <div class="">
+                      {% for cat in article.category.all %}
+                      <a href="#">#{{cat.title}}</a>
+                      {% endfor %}
+                    </div>
                 </p>
             </div>
             <!-- Divider-->
