@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404, get_list_or_404
-from .models import Article, category
+from .models import Article, category as categ
 #if you want to send HttpResponse or JsonResponse you should use the following commented code.
 #from django.http import HttpResponse , JsonResponse
 from django.http import Http404
@@ -31,3 +31,10 @@ def contact (request):
         "articles" : Article.objects.filter(status="p").order_by('-publish'),
     }
     return render (request, "blog/contact.html", context)
+
+def category(request, slug):
+    context = {
+        # - means decending
+        "category" : get_object_or_404 (categ, slug=slug, status = True),
+    }
+    return render (request, "blog/category.html", context)
