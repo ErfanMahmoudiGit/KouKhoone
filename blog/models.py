@@ -2,6 +2,21 @@ from django.db import models
 from django.utils import timezone
 from extentions.utils import jalali_convertor
 
+class category(models.Model):
+    title = models.CharField(max_length= 200, verbose_name = "عنوان دسته‌بندی")
+    slug = models.SlugField (max_length = 100, unique=True, verbose_name = "آدرس دسته‌بندی")
+    status = models.BooleanField(default = True, verbose_name = "آیا نمایش داده شود؟")
+    position = models.IntegerField(verbose_name = "پوزیشن")
+
+    class Meta(object):
+        verbose_name = "دسته‌بندی"
+        verbose_name_plural = "دسته‌بندی ها"
+        ordering = ['position']
+
+    def __str__(self):
+        return self.title
+
+
 class Article(models.Model):
     STATUS_CHOICES = (
     ('d', 'پیش نویس'),
