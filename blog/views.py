@@ -8,7 +8,6 @@ def home (request):
     context = {
         # - means decending
         "articles" : Article.objects.filter(status="p").order_by('-publish'),
-        "category" : category.objects.filter(status=True),
     }
     return render (request, "blog/home.html", context)
 
@@ -16,7 +15,6 @@ def detail(request, slug):
     context = {
         #Article.objects.get (slug=slug)
         "article" : get_object_or_404 (Article, slug=slug, status = "p"),
-        "category" : category.objects.filter(status=True),
     }
     return render (request, "blog/detail.html", context)
 
@@ -24,7 +22,6 @@ def about (request):
     context = {
         # - means decending
         "articles" : Article.objects.filter(status="p").order_by('-publish'),
-        "category" : category.objects.filter(status=True),
     }
     return render (request, "blog/about.html", context)
 
@@ -32,6 +29,5 @@ def contact (request):
     context = {
         # - means decending
         "articles" : Article.objects.filter(status="p").order_by('-publish'),
-        "category" : category.objects.filter(status=True),
     }
     return render (request, "blog/contact.html", context)
