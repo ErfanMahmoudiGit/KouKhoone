@@ -16,3 +16,9 @@ def detail(request, slug):
         "article" : get_object_or_404 (Article, slug=slug, status = "p")
     }
     return render (request, "blog/detail.html", context)
+
+def about (request):
+    return render (request, "blog/about.html")
+
+def contact (request):
+    return render (request, "blog/contact.html")
