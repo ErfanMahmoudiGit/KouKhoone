@@ -6,7 +6,6 @@ class categoryAdmin (admin.ModelAdmin):
     list_filter = (['status'])
     search_fields = ('title','slug')
     prepopulated_fields = {'slug':('title',),}
-admin.site.register(category, categoryAdmin)
 
 class ArticleAdmin (admin.ModelAdmin):
     list_display = ('title', 'description', 'created', 'jpublish', 'status', 'category_to_str')
@@ -16,5 +15,9 @@ class ArticleAdmin (admin.ModelAdmin):
     ordering = ('status', '-publish')
 
     def category_to_str(self, obj):
-        return "categories"
+        output = [category.title for category in obj.category.all()]
+        return ",".join(output)
+
+    category_to_str.short_description = "دسته‌بندی ها"
+admin.site.register(category, categoryAdmin)
 admin.site.register(Article, ArticleAdmin)
