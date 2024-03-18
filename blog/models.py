@@ -24,6 +24,8 @@ class Article(models.Model):
     )
     title = models.CharField(max_length= 200, verbose_name = "عنوان مقاله")
     slug = models.SlugField (max_length = 100, unique=True, verbose_name = "آدرس مقاله")
+    #category class should be above this class.
+    category = models.ManyToManyField(category, verbose_name = "دسته‌بندی")
     description = models.TextField (verbose_name = "محتوا")
     thumbnail = models.ImageField (upload_to="images", verbose_name = " تصویر")
     publish = models.DateTimeField (default = timezone.now, verbose_name = "زمان انتشار")
