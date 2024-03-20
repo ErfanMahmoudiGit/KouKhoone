@@ -19,7 +19,7 @@ SECRET_KEY = 'django-insecure-hi=q(cc32y5o!*=4m*fv%knmk@$f4pbbz#5akxhgvwrg_7-scr
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['mysite-dfq7.onrender.com']
+ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -69,7 +69,7 @@ WSGI_APPLICATION = 'config.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
-"""
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
@@ -77,7 +77,7 @@ DATABASES = {
     }
 }
 """
-#changed the database to postgresql to deploy the project on render.com
+#change the database to postgresql to deploy the project on render.com
 DATABASES = {
     'default': dj_database_url.config(
         # Replace this value with your local database's connection string.
@@ -85,7 +85,7 @@ DATABASES = {
         conn_max_age=600
     )
 }
-
+"""
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
 
