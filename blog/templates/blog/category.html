@@ -31,7 +31,7 @@
                     <a href="#!">عرفان</a>
                     {{article.jpublish}}
                     <div class="">
-                      {% for cat in article.category_published.all %}
+                      {% for cat in article.category_published.published %}
                       <a href="#">#{{cat.title}}</a>
                       {% endfor %}
                     </div>
