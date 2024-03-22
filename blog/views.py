@@ -3,11 +3,16 @@ from .models import Article, category as categ
 #if you want to send HttpResponse or JsonResponse you should use the following commented code.
 #from django.http import HttpResponse , JsonResponse
 from django.http import Http404
+from django.core.paginator import Paginator
 
-def home (request):
+def home (request, page=1):
+    articles_list = Article.objects.filter(status="p").order_by('-publish')
+    paginator = Paginator(articles_list, 4)  # Show 25 contacts per page.
+    #page_number = request.GET.get("page")
+    articles = paginator.get_page(page)
     context = {
         # - means decending
-        "articles" : Article.objects.filter(status="p").order_by('-publish'),
+        "articles" : articles,
     }
     return render (request, "blog/home.html", context)
 

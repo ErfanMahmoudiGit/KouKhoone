@@ -42,3 +42,7 @@ header.masthead .page-heading .subheading, header.masthead .site-heading .subhea
 .post-subtitle {
     font-size: 19px !important;
 }
+
+.margin_left_for_button {
+    margin-left: 30px !important;
+}
