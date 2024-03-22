@@ -5,22 +5,32 @@
        url('sahel.woff2') format('woff2'),
        url('sahel.woff') format('woff'),
        url('sahel.tff') format('truetype');
-
 }
+
 body{
   font-family: "Sahel";
   direction: rtl;
   text-align: right;
   font-size: 14px;
 }
+
 .navbar-nav{
   margin-left: initial !important;
   margin-right: auto;
 }
+
 .post-meta {
     text-align: left;
 }
 
 .pager_button{
   float: left !important;
+}
+
+header.masthead .site-heading h1{
+  font-size: 3rem !important;
+}
+
+header.masthead .page-heading .subheading, header.masthead .site-heading .subheading {
+  font-size: 1rem !important;
 }
