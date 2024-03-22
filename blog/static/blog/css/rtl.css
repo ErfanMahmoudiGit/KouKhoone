@@ -34,3 +34,11 @@ header.masthead .site-heading h1{
 header.masthead .page-heading .subheading, header.masthead .site-heading .subheading {
   font-size: 1rem !important;
 }
+
+.post-title {
+    font-size: 32px !important;
+}
+
+.post-subtitle {
+    font-size: 19px !important;
+}
