@@ -7,6 +7,10 @@ class ArticleManager(models.Manager):
     def published (self):
         return self.filter(status = 'p')
 
+class CategoryManager(models.Manager):
+    def active (self):
+        return self.filter(status = True)
+
 class category(models.Model):
     parent = models.ForeignKey('self', default = None, null = True, blank = True, on_delete = models.SET_NULL, related_name = 'children', verbose_name = "زیردسته")
     title = models.CharField(max_length= 200, verbose_name = "عنوان دسته‌بندی")
@@ -21,6 +25,8 @@ class category(models.Model):
 
     def __str__(self):
         return self.title
+
+    objects = CategoryManager()
 
 
 class Article(models.Model):
