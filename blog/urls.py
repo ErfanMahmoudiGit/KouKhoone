@@ -9,4 +9,5 @@ urlpatterns = [
     path ("about", about, name = "about"),
     path ("contact", contact, name = "contact"),
     path ("category/<slug:slug>", category, name = "category"),
+    path ("category/<slug:slug>/page/<int:page>", category, name = "category"),
 ]

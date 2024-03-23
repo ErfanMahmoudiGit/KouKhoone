@@ -37,9 +37,16 @@ def contact (request):
     }
     return render (request, "blog/contact.html", context)
 
-def category(request, slug):
+def category(request, slug, page=1):
+    category = get_object_or_404 (categ, slug=slug, status = True)
+    articles_list = category.articles.published()
+    paginator = Paginator(articles_list, 4)  # Show 25 contacts per page.
+    articles = paginator.get_page(page)
+
+
     context = {
         # - means decending
-        "category" : get_object_or_404 (categ, slug=slug, status = True),
+        "category" : category,
+        "articles" : articles,
     }
     return render (request, "blog/category.html", context)
