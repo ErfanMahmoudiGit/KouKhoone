@@ -8,10 +8,10 @@ from django.core.paginator import Paginator
 from django.views.generic.list import ListView
 class ArticleList(ListView):
     #model= Article
-    #context_object = "articles"
+    #context_object_name = "articles"
     template_name = "blog/home.html"
     queryset = Article.objects.filter(status="p").order_by('-publish')
-    paginated_by = 6
+    paginate_by = 4
 
 """
 def home (request, page=1):
