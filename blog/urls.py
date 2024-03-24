@@ -1,10 +1,10 @@
 from django.urls import path
-from blog.views import home, detail, about, contact, category
+from blog.views import ArticleList, detail, about, contact, category
 
 app_name = "blog"
 urlpatterns = [
-    path ("", home, name = "home"),
-    path ("page/<int:page>", home, name = "home"),
+    path ("", ArticleList.as_view(), name = "home"),
+    path ("page/<int:page>", ArticleList.as_view(), name = "home"),
     path ("article/<slug:slug>", detail, name = "detail"),
     path ("about", about, name = "about"),
     path ("contact", contact, name = "contact"),

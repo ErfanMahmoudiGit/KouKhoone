@@ -5,6 +5,15 @@ from .models import Article, category as categ
 from django.http import Http404
 from django.core.paginator import Paginator
 
+from django.views.generic.list import ListView
+class ArticleList(ListView):
+    #model= Article
+    #context_object = "articles"
+    template_name = "blog/home.html"
+    queryset = Article.objects.filter(status="p").order_by('-publish')
+    paginated_by = 6
+
+"""
 def home (request, page=1):
     articles_list = Article.objects.filter(status="p").order_by('-publish')
     paginator = Paginator(articles_list, 4)  # Show 25 contacts per page.
@@ -15,6 +24,7 @@ def home (request, page=1):
         "articles" : articles,
     }
     return render (request, "blog/home.html", context)
+"""
 
 def detail(request, slug):
     context = {
