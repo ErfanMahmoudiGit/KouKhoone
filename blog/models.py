@@ -1,6 +1,7 @@
 from django.db import models
 from django.utils import timezone
 from extentions.utils import jalali_convertor
+from django.contrib.auth.models import User
 
 #my managers
 class ArticleManager(models.Manager):
@@ -36,7 +37,8 @@ class Article(models.Model):
     )
     title = models.CharField(max_length= 200, verbose_name = "عنوان مقاله")
     slug = models.SlugField (max_length = 100, unique=True, verbose_name = "آدرس مقاله")
-    #category class should be above this class.
+    author = models.ForeignKey(User, on_delete = models.CASCADE)
+    #category class should be above this line.
     category = models.ManyToManyField(category, verbose_name = "دسته‌بندی", related_name = "articles")
     description = models.TextField (verbose_name = "محتوا")
     thumbnail = models.ImageField (upload_to="images", verbose_name = " تصویر")
