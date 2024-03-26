@@ -34,6 +34,7 @@ INSTALLED_APPS = [
     'blog.apps.BlogConfig',
     'extentions',
     'rest_framework',
+    'api.apps.ApiConfig',
 
 ]
 
