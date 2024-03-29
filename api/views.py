@@ -4,6 +4,7 @@ from rest_framework.generics import ListCreateAPIView, RetrieveAPIView, Retrieve
 from django.contrib.auth.models import User
 from rest_framework.permissions import IsAdminUser
 from .permissions import IsSuperUserOrStaffReadOnly, IsAuthorOrReadOnly, IsStaffOrReadOnly
+from rest_framework.authentication import SessionAuthentication, BasicAuthentication
 
 class ArticleList(ListCreateAPIView):
     queryset = Article.objects.all()
