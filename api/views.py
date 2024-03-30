@@ -18,7 +18,12 @@ class ArticleDetail(RetrieveUpdateAPIView):
     permission_classes = (IsStaffOrReadOnly, IsAuthorOrReadOnly)
 
 class UserList(ListCreateAPIView):
-    queryset = User.objects.all()
+    def get_queryset(self):
+        print ("----------------------")
+        print (self.request.user)
+        print (self.request.auth)
+        print ("----------------------")
+        return User.objects.all()
     serializer_class = UserSerializer
     permission_classes = (IsSuperUserOrStaffReadOnly, )
 
