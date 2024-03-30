@@ -1,5 +1,5 @@
 """
-URL configuration for config project.
+URL configuration for koukhoone project.
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/5.0/topics/http/urls/
@@ -16,12 +16,15 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from rest_framework.authtoken.views import obtain_auth_token
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include ("blog.urls")),
-    path('api-auth/', include('rest_framework.urls')),
     path('api/', include('api.urls')),
+    path('api/token-auth/', obtain_auth_token),
+    #the following path is not needed. because i no longer use session for auth.
+    #path('api-auth/', include('rest_framework.urls')),
 ]
 
 # the following 3 lines are used to fix the bug while trying to see the images in debug mode.
