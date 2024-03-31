@@ -2,9 +2,11 @@ from blog.models import Article
 from .serializers import ArticleSerializer, UserSerializer
 from rest_framework.generics import ListCreateAPIView, RetrieveAPIView, RetrieveUpdateAPIView
 from django.contrib.auth.models import User
-from rest_framework.permissions import IsAdminUser
+from rest_framework.permissions import IsAdminUser, IsAuthenticated
 from .permissions import IsSuperUserOrStaffReadOnly, IsAuthorOrReadOnly, IsStaffOrReadOnly
 from rest_framework.authentication import SessionAuthentication, BasicAuthentication
+from rest_framework.views import APIView
+from rest_framework.response import Response
 
 class ArticleList(ListCreateAPIView):
     queryset = Article.objects.all()
@@ -31,3 +33,19 @@ class UserDetail(RetrieveUpdateAPIView):
     queryset = User.objects.all()
     serializer_class = UserSerializer
     permission_classes = (IsSuperUserOrStaffReadOnly, )
+
+class RevokeToken (APIView):
+    def get (self, request):
+        return Response ({"method":"get"})
+
+    def post (self, request):
+        return Response ({"method":"post"})
+
+    def put (self, request):
+        return Response ({"method":"put"})
+
+    def delete (self, request):
+        return Response ({"method":"delete"})
+
+    serializer_class = UserSerializer
+    permission_classes = (IsAuthenticated, )
