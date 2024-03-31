@@ -5,8 +5,8 @@ from django.contrib.auth.models import User
 from rest_framework.permissions import IsAdminUser, IsAuthenticated
 from .permissions import IsSuperUserOrStaffReadOnly, IsAuthorOrReadOnly, IsStaffOrReadOnly
 from rest_framework.authentication import SessionAuthentication, BasicAuthentication
-from rest_framework.views import APIView
-from rest_framework.response import Response
+"""from rest_framework.views import APIView
+from rest_framework.response import Response"""
 
 class ArticleList(ListCreateAPIView):
     queryset = Article.objects.all()
@@ -34,6 +34,7 @@ class UserDetail(RetrieveUpdateAPIView):
     serializer_class = UserSerializer
     permission_classes = (IsSuperUserOrStaffReadOnly, )
 
+"""
 class RevokeToken (APIView):
     def get (self, request):
         return Response ({"method":"get not allowed. this api should be used to revoke a token."})
@@ -46,7 +47,8 @@ class RevokeToken (APIView):
 
     def delete (self, request):
         request.auth.delete()
-        return Response ({"msg":"Token Revoked."})
+        return Response (status = 204)
 
     serializer_class = UserSerializer
     permission_classes = (IsAuthenticated, )
+"""

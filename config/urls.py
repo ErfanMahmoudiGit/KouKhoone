@@ -16,15 +16,19 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from rest_framework.authtoken.views import obtain_auth_token
-from api.views import RevokeToken
+#from rest_framework.authtoken.views import obtain_auth_token
+#from api.views import RevokeToken
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include ("blog.urls")),
     path('api/', include('api.urls')),
-    path('api/token-auth/', obtain_auth_token),
-    path ('api/revoke/', RevokeToken.as_view()),
+    #path('api/token-auth/', obtain_auth_token),
+    #path ('api/revoke/', RevokeToken.as_view()),
+    path('api/rest-auth/', include('dj_rest_auth.urls')),
+    path('api/rest-auth/registration/', include('dj_rest_auth.registration.urls')),
+
+
     #the following path is not needed. because i no longer use session for auth.
     #path('api-auth/', include('rest_framework.urls')),
 ]
