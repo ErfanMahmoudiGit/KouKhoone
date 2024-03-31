@@ -36,16 +36,17 @@ class UserDetail(RetrieveUpdateAPIView):
 
 class RevokeToken (APIView):
     def get (self, request):
-        return Response ({"method":"get"})
+        return Response ({"method":"get not allowed. this api should be used to revoke a token."})
 
     def post (self, request):
-        return Response ({"method":"post"})
+        return Response ({"method":"post not allowed. this api should be used to revoke a token."})
 
     def put (self, request):
-        return Response ({"method":"put"})
+        return Response ({"method":"put not allowed. this api should be used to revoke a token."})
 
     def delete (self, request):
-        return Response ({"method":"delete"})
+        request.auth.delete()
+        return Response ({"msg":"Token Revoked."})
 
     serializer_class = UserSerializer
     permission_classes = (IsAuthenticated, )
