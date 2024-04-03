@@ -5,8 +5,6 @@ from django.contrib.auth.models import User
 from rest_framework.permissions import IsAdminUser, IsAuthenticated
 from .permissions import IsSuperUserOrStaffReadOnly, IsAuthorOrReadOnly, IsStaffOrReadOnly
 from rest_framework.authentication import SessionAuthentication, BasicAuthentication
-"""from rest_framework.views import APIView
-from rest_framework.response import Response"""
 
 class ArticleList(ListCreateAPIView):
     queryset = Article.objects.all()
@@ -35,6 +33,8 @@ class UserDetail(RetrieveUpdateAPIView):
     permission_classes = (IsSuperUserOrStaffReadOnly, )
 
 """
+#from rest_framework.views import APIView
+#from rest_framework.response import Response
 class RevokeToken (APIView):
     def get (self, request):
         return Response ({"method":"get not allowed. this api should be used to revoke a token."})
