@@ -5,7 +5,14 @@ from django.contrib.auth.models import User
 from rest_framework.permissions import IsAdminUser, IsAuthenticated
 from .permissions import IsSuperUserOrStaffReadOnly, IsAuthorOrReadOnly, IsStaffOrReadOnly
 from rest_framework.authentication import SessionAuthentication, BasicAuthentication
+from rest_framework.viewsets import ModelViewSet
+class ArticleViewSet(ModelViewSet):
+    queryset = Article.objects.all()
+    serializer_class = ArticleSerializer
+    lookup_field = "slug"
+    permission_classes = (IsStaffOrReadOnly, IsAuthorOrReadOnly)
 
+"""
 class ArticleList(ListCreateAPIView):
     queryset = Article.objects.all()
     serializer_class = ArticleSerializer
@@ -31,7 +38,7 @@ class UserDetail(RetrieveUpdateAPIView):
     queryset = User.objects.all()
     serializer_class = UserSerializer
     permission_classes = (IsSuperUserOrStaffReadOnly, )
-
+"""
 """
 #from rest_framework.views import APIView
 #from rest_framework.response import Response
