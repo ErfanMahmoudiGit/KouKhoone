@@ -6,11 +6,28 @@ from rest_framework.permissions import IsAdminUser, IsAuthenticated
 from .permissions import IsSuperUserOrStaffReadOnly, IsAuthorOrReadOnly, IsStaffOrReadOnly
 from rest_framework.authentication import SessionAuthentication, BasicAuthentication
 from rest_framework.viewsets import ModelViewSet
+
 class ArticleViewSet(ModelViewSet):
     queryset = Article.objects.all()
     serializer_class = ArticleSerializer
     lookup_field = "slug"
-    permission_classes = (IsStaffOrReadOnly, IsAuthorOrReadOnly)
+
+    def get_permissions(self):
+        if self.action in ['list', 'create']:
+            permission_classes = [IsStaffOrReadOnly]
+        else:
+            permission_classes = [IsStaffOrReadOnly, IsAuthorOrReadOnly]
+        return [permission() for permission in permission_classes]
+
+class UserViewSet (ModelViewSet):
+    def get_queryset(self):
+        print ("----------------------")
+        print (self.request.user)
+        print (self.request.auth)
+        print ("----------------------")
+        return User.objects.all()
+    serializer_class = UserSerializer
+    permission_classes = (IsSuperUserOrStaffReadOnly, )
 
 """
 class ArticleList(ListCreateAPIView):
