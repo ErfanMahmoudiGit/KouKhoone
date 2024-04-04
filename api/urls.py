@@ -1,7 +1,5 @@
-from django.urls import path, include
+"""
 from api.views import ArticleList, ArticleDetail, UserList, UserDetail
-
-app_name = "api"
 urlpatterns = [
     path ("", ArticleList.as_view(), name = "home"),
     path ("page/<int:page>", ArticleList.as_view(), name = "home"),
@@ -9,4 +7,19 @@ urlpatterns = [
     path ("<slug:slug>", ArticleDetail.as_view(), name = "detail"),
     path ("users/", UserList.as_view(), name = "userlist"),
     path ("users/<int:pk>", UserDetail.as_view(), name = "userdetail"),
+]
+"""
+
+from django.urls import path, include
+from rest_framework import routers
+from api.views import UserViewSet, ArticleViewSet
+
+app_name = "api"
+
+router = routers.SimpleRouter()
+router.register('users', UserViewSet, basename= 'users')
+router.register('', ArticleViewSet, basename= 'articles')
+
+urlpatterns = [
+    path ("", include(router.urls)),
 ]
