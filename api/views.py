@@ -8,9 +8,15 @@ from rest_framework.authentication import SessionAuthentication, BasicAuthentica
 from rest_framework.viewsets import ModelViewSet
 
 class ArticleViewSet(ModelViewSet):
-    queryset = Article.objects.all()
     serializer_class = ArticleSerializer
     lookup_field = "slug"
+
+    def get_queryset(self):
+        queryset = Article.objects.all()
+        status = self.request.query_params.get('status')
+        if status is not None:
+            queryset = queryset.filter(status = status)
+        return queryset
 
     def get_permissions(self):
         if self.action in ['list', 'create']:
