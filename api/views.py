@@ -26,7 +26,7 @@ class ArticleViewSet(ModelViewSet):
 
         return queryset
     """
-    filterset_fields = ["status", "author"]
+    filterset_fields = ["status", "author__username"]
 
     def get_permissions(self):
         if self.action in ['list', 'create']:
