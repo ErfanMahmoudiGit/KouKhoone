@@ -12,6 +12,7 @@ class ArticleViewSet(ModelViewSet):
     serializer_class = ArticleSerializer
     lookup_field = "slug"
 
+
     """
     def get_queryset(self):
         queryset = Article.objects.all()
@@ -35,6 +36,10 @@ class ArticleViewSet(ModelViewSet):
             "author__first_name",
             "author__last_name"
             ]
+    ordering_fields = [
+            "publish",
+            "status",
+    ]
 
     def get_permissions(self):
         if self.action in ['list', 'create']:
