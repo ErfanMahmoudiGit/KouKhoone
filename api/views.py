@@ -40,6 +40,7 @@ class ArticleViewSet(ModelViewSet):
             "publish",
             "status",
     ]
+    ordering = "-publish"
 
     def get_permissions(self):
         if self.action in ['list', 'create']:
